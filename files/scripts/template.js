@@ -2,7 +2,7 @@ var head = document.getElementsByTagName('head')[0];
 
 head.innerHTML += ` 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">    
-    <link id="icon" rel="icon" href="${window.location.origin}/files/images/icon/MoonbaseDark.png">
+    <link id="icon" rel="icon" href="${window.location.origin}/files/images/icon/moonbase_${window.matchMedia('(prefers-color-scheme: dark)').matches ? "light" : "dark"}.png">
     `;
 
 
@@ -15,7 +15,7 @@ jQueryScript.onload = jQueryOnLoad;
 head.appendChild(jQueryScript);
 
 
-
+// jQuery loaded
 function jQueryOnLoad(){
 
     var header = $('<nav/>', {
@@ -42,12 +42,6 @@ function jQueryOnLoad(){
 console.log(`${window.location.origin}/files/images/icon/MoonbaseDark.png`)
 if(window.matchMedia){
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-        //dark mode
-        if (event.matches)
-            $("#icon").attr('href', `${window.location.origin}/files/images/icon/MoonbaseLight.png`);
-        //light mode
-        else
-            $("#icon").attr('href', `${window.location.origin}/files/images/icon/MoonbaseDark.png`);
-
+        $("#icon").attr('href', `${window.location.origin}/files/images/icon/moonbase_${event.matches ? "light" : "dark"}.png`);
     });
 }
